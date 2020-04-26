@@ -196,7 +196,7 @@
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Settings";
+            this.Text = "Ustawienia";
             ((System.ComponentModel.ISupportInitialize)(this.ativeTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WindowMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceMax)).EndInit();
