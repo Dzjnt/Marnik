@@ -94,6 +94,7 @@ namespace MarnikProjekt
 
                     PromptBuilder.AppendText(messagesListView.SelectedItems[i].Text);
                 }
+              
                 speechSynthesizer.Speak(PromptBuilder);
                 return;
 
@@ -104,6 +105,7 @@ namespace MarnikProjekt
                 {
                     PromptBuilder.AppendText(messagesListView.Items[i].Text);
                 }
+                speechSynthesizer.Rate = Int32.Parse(MarnikProjekt.Properties.Settings.Default["activeTime"].ToString()) - 10;
                 speechSynthesizer.Speak(PromptBuilder);
             }
         }
