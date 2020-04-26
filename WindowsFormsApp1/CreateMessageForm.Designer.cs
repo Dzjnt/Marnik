@@ -50,6 +50,7 @@
             this.saveButton.TabIndex = 1;
             this.saveButton.Text = "Zapisz";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // messageNameTextBox
             // 
