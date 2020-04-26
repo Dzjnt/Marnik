@@ -180,7 +180,7 @@
             this.Controls.Add(this.second);
             this.Controls.Add(this.first);
             this.Name = "SettingsForm";
-            this.Text = "Settings";
+            this.Text = "Ustawienia";
             ((System.ComponentModel.ISupportInitialize)(this.ativeTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WindowMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChoiceMax)).EndInit();

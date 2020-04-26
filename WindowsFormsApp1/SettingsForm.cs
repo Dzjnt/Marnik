@@ -45,6 +45,7 @@ namespace WindowsFormsApp1
             Properties.Settings.Default["visibleCommunicationChoiceMax"] = ChoiceMax.Value;
 
             Properties.Settings.Default.Save();
+            Close();
         }
     }
 }

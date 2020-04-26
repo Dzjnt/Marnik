@@ -157,7 +157,7 @@ namespace MarnikProjekt
         {
             Console.Out.WriteLine("Settings button");
             SettingsForm settingsForm = new SettingsForm();
-            settingsForm.Show();
+            settingsForm.ShowDialog();
         }
 
         private void messagesListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
