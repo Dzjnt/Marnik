@@ -92,7 +92,7 @@
             // 
             // browseMessagesButton
             // 
-            this.browseMessagesButton.Location = new System.Drawing.Point(417, 99);
+            this.browseMessagesButton.Location = new System.Drawing.Point(961, 70);
             this.browseMessagesButton.Name = "browseMessagesButton";
             this.browseMessagesButton.Size = new System.Drawing.Size(140, 23);
             this.browseMessagesButton.TabIndex = 10;
@@ -101,7 +101,7 @@
             // 
             // deleteMessagesButton
             // 
-            this.deleteMessagesButton.Location = new System.Drawing.Point(417, 70);
+            this.deleteMessagesButton.Location = new System.Drawing.Point(961, 41);
             this.deleteMessagesButton.Name = "deleteMessagesButton";
             this.deleteMessagesButton.Size = new System.Drawing.Size(140, 23);
             this.deleteMessagesButton.TabIndex = 11;
@@ -110,7 +110,7 @@
             // 
             // createMessagesButton
             // 
-            this.createMessagesButton.Location = new System.Drawing.Point(417, 128);
+            this.createMessagesButton.Location = new System.Drawing.Point(961, 99);
             this.createMessagesButton.Name = "createMessagesButton";
             this.createMessagesButton.Size = new System.Drawing.Size(140, 23);
             this.createMessagesButton.TabIndex = 12;
