@@ -43,21 +43,18 @@
             // picturesListView
             // 
             this.picturesListView.HideSelection = false;
-            this.picturesListView.Location = new System.Drawing.Point(18, 18);
-            this.picturesListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.picturesListView.Location = new System.Drawing.Point(12, 12);
             this.picturesListView.Name = "picturesListView";
-            this.picturesListView.Size = new System.Drawing.Size(596, 1061);
+            this.picturesListView.Size = new System.Drawing.Size(399, 691);
             this.picturesListView.TabIndex = 0;
             this.picturesListView.UseCompatibleStateImageBehavior = false;
-            this.picturesListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.picturesListView_ItemSelectionChanged);
             this.picturesListView.DoubleClick += new System.EventHandler(this.picturesListView_DoubleClick);
             // 
             // speakButton
             // 
-            this.speakButton.Location = new System.Drawing.Point(1438, 197);
-            this.speakButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.speakButton.Location = new System.Drawing.Point(959, 128);
             this.speakButton.Name = "speakButton";
-            this.speakButton.Size = new System.Drawing.Size(210, 35);
+            this.speakButton.Size = new System.Drawing.Size(140, 23);
             this.speakButton.TabIndex = 1;
             this.speakButton.Text = "Przeczytaj zestaw";
             this.speakButton.UseVisualStyleBackColor = true;
@@ -65,10 +62,9 @@
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(626, 18);
-            this.loadButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.loadButton.Location = new System.Drawing.Point(417, 12);
             this.loadButton.Name = "loadButton";
-            this.loadButton.Size = new System.Drawing.Size(210, 35);
+            this.loadButton.Size = new System.Drawing.Size(140, 23);
             this.loadButton.TabIndex = 3;
             this.loadButton.Text = "Załaduj zestaw z dysku";
             this.loadButton.UseVisualStyleBackColor = true;
@@ -76,10 +72,9 @@
             // 
             // clearListView
             // 
-            this.clearListView.Location = new System.Drawing.Point(626, 63);
-            this.clearListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.clearListView.Location = new System.Drawing.Point(417, 41);
             this.clearListView.Name = "clearListView";
-            this.clearListView.Size = new System.Drawing.Size(210, 35);
+            this.clearListView.Size = new System.Drawing.Size(140, 23);
             this.clearListView.TabIndex = 6;
             this.clearListView.Text = "Wyczyść listę";
             this.clearListView.UseVisualStyleBackColor = true;
@@ -88,50 +83,46 @@
             // messagesListView
             // 
             this.messagesListView.HideSelection = false;
-            this.messagesListView.Location = new System.Drawing.Point(864, 18);
-            this.messagesListView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.messagesListView.Location = new System.Drawing.Point(576, 12);
             this.messagesListView.Name = "messagesListView";
-            this.messagesListView.Size = new System.Drawing.Size(566, 1061);
+            this.messagesListView.Size = new System.Drawing.Size(379, 691);
             this.messagesListView.TabIndex = 7;
             this.messagesListView.UseCompatibleStateImageBehavior = false;
+            this.messagesListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.messagesListView_ItemSelectionChanged);
             this.messagesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.messagesListView_MouseClick);
             // 
             // loadMessagesButton
             // 
-            this.loadMessagesButton.Location = new System.Drawing.Point(1478, 152);
-            this.loadMessagesButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.loadMessagesButton.Location = new System.Drawing.Point(985, 99);
             this.loadMessagesButton.Name = "loadMessagesButton";
-            this.loadMessagesButton.Size = new System.Drawing.Size(129, 35);
+            this.loadMessagesButton.Size = new System.Drawing.Size(86, 23);
             this.loadMessagesButton.TabIndex = 8;
             this.loadMessagesButton.Text = "Załaduj zestaw komunikatów";
             this.loadMessagesButton.UseVisualStyleBackColor = true;
             // 
             // browseMessagesButton
             // 
-            this.browseMessagesButton.Location = new System.Drawing.Point(1478, 63);
-            this.browseMessagesButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.browseMessagesButton.Location = new System.Drawing.Point(985, 41);
             this.browseMessagesButton.Name = "browseMessagesButton";
-            this.browseMessagesButton.Size = new System.Drawing.Size(129, 35);
+            this.browseMessagesButton.Size = new System.Drawing.Size(86, 23);
             this.browseMessagesButton.TabIndex = 10;
             this.browseMessagesButton.Text = "Przeglądaj zestaw ";
             this.browseMessagesButton.UseVisualStyleBackColor = true;
             // 
             // deleteMessagesButton
             // 
-            this.deleteMessagesButton.Location = new System.Drawing.Point(1478, 18);
-            this.deleteMessagesButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.deleteMessagesButton.Location = new System.Drawing.Point(985, 12);
             this.deleteMessagesButton.Name = "deleteMessagesButton";
-            this.deleteMessagesButton.Size = new System.Drawing.Size(129, 35);
+            this.deleteMessagesButton.Size = new System.Drawing.Size(86, 23);
             this.deleteMessagesButton.TabIndex = 11;
             this.deleteMessagesButton.Text = "Usuń zestaw";
             this.deleteMessagesButton.UseVisualStyleBackColor = true;
             // 
             // createMessagesButton
             // 
-            this.createMessagesButton.Location = new System.Drawing.Point(1478, 108);
-            this.createMessagesButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.createMessagesButton.Location = new System.Drawing.Point(985, 70);
             this.createMessagesButton.Name = "createMessagesButton";
-            this.createMessagesButton.Size = new System.Drawing.Size(129, 35);
+            this.createMessagesButton.Size = new System.Drawing.Size(86, 23);
             this.createMessagesButton.TabIndex = 12;
             this.createMessagesButton.Text = "Utwórz nowy zestaw";
             this.createMessagesButton.UseVisualStyleBackColor = true;
@@ -139,9 +130,10 @@
             // 
             // settingButton
             // 
-            this.settingButton.Location = new System.Drawing.Point(1478, 1042);
+            this.settingButton.Location = new System.Drawing.Point(985, 677);
+            this.settingButton.Margin = new System.Windows.Forms.Padding(2);
             this.settingButton.Name = "settingButton";
-            this.settingButton.Size = new System.Drawing.Size(129, 36);
+            this.settingButton.Size = new System.Drawing.Size(86, 23);
             this.settingButton.TabIndex = 13;
             this.settingButton.Text = "Ustawienia";
             this.settingButton.UseVisualStyleBackColor = true;
@@ -149,9 +141,9 @@
             // 
             // MessagesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1660, 1117);
+            this.ClientSize = new System.Drawing.Size(1107, 726);
             this.Controls.Add(this.settingButton);
             this.Controls.Add(this.createMessagesButton);
             this.Controls.Add(this.deleteMessagesButton);
@@ -162,7 +154,6 @@
             this.Controls.Add(this.loadButton);
             this.Controls.Add(this.speakButton);
             this.Controls.Add(this.picturesListView);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MessagesForm";
             this.Text = "Aplikacja do rozpoznawania mowy";
             this.Load += new System.EventHandler(this.MessagesForm_Load);

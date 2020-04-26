@@ -22,11 +22,15 @@ namespace MarnikProjekt
         public ImageList images = new ImageList();
         private OpenFileDialog OpenFileDialog;
         public bool oneItemWasSelected = false;
+        public static string ApplicationPath = string.Empty;
         public MessagesForm()
         {
             InitializeComponent();
-       
-      
+            ApplicationPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+        }
+        public void LoadImages()
+        {
+
         }
         public void GetImagesFromOpenDialog(string[] fullPath)
         {
@@ -79,16 +83,16 @@ namespace MarnikProjekt
             PromptBuilder.ClearContent();
             if (oneItemWasSelected)
             {
-                PromptBuilder.AppendText(picturesListView.SelectedItems[0].Text);
+                PromptBuilder.AppendText(messagesListView.SelectedItems[0].Text);
                 speechSynthesizer.Speak(PromptBuilder);
                 return;
 
             }
             else
             {
-                for (int i = 0; i < picturesListView.Items.Count; i++)
+                for (int i = 0; i < messagesListView.Items.Count; i++)
                 {
-                    PromptBuilder.AppendText(picturesListView.Items[i].Text);
+                    PromptBuilder.AppendText(messagesListView.Items[i].Text);
                 }
                 speechSynthesizer.Speak(PromptBuilder);
             }
@@ -135,15 +139,7 @@ namespace MarnikProjekt
           
         }
 
-        private void picturesListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
-        {
-            if (picturesListView.SelectedItems.Count == 0)
-            {
-                oneItemWasSelected = false;
-                return;
-            }
-            oneItemWasSelected = true;
-        }
+
 
         private void picturesListView_DoubleClick(object sender, EventArgs e)
         {
@@ -153,10 +149,7 @@ namespace MarnikProjekt
           
                 picturesListView.Items.Remove(item);
                 messagesListView.Items.Add(item);
-            }
-         
-            
-           
+            }                       
 
         }
 
@@ -166,5 +159,17 @@ namespace MarnikProjekt
             SettingsForm settingsForm = new SettingsForm();
             settingsForm.Show();
         }
+
+        private void messagesListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            if (messagesListView.SelectedItems.Count == 0)
+            {
+                oneItemWasSelected = false;
+                return;
+            }
+            oneItemWasSelected = true;
+        }
+
+
     }
 }
