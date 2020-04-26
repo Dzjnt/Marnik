@@ -112,7 +112,7 @@ namespace MarnikProjekt
             OpenFileDialog.Multiselect = true;
             OpenFileDialog.Filter = "png files (*.png)|*.jpg|All files (*.*)|*.*";
 
-            Decimal WindowMax = Decimal.Parse(Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
+            WindowMax = Decimal.Parse(Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
 
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -153,7 +153,8 @@ namespace MarnikProjekt
 
         private void MessagesForm_Load(object sender, EventArgs e)
         {
-          
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.ShowDialog();
         }
 
 
@@ -161,13 +162,21 @@ namespace MarnikProjekt
         private void picturesListView_DoubleClick(object sender, EventArgs e)
         {
             var selectedItem = picturesListView.SelectedItems[0];
-            foreach (ListViewItem item in picturesListView.SelectedItems)
+            if(ChoiceMax < messagesListView.Items.Count)
             {
-          
-                picturesListView.Items.Remove(item);
-                messagesListView.Items.Add(item);
-            }                       
+                MessageBox.Show($"Nie można dodać więcej zdjęć! Maksymalna ilość  {WindowMax}");
+                return;
+            }
+            else
+            {
+                foreach (ListViewItem item in picturesListView.SelectedItems)
+                {
 
+                    picturesListView.Items.Remove(item);
+                    messagesListView.Items.Add(item);
+                }
+            }
+                        
         }
 
         private void setting_Click(object sender, EventArgs e)
