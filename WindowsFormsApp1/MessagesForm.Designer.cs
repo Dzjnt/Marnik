@@ -154,7 +154,11 @@
             this.Controls.Add(this.loadButton);
             this.Controls.Add(this.speakButton);
             this.Controls.Add(this.picturesListView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MessagesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aplikacja do rozpoznawania mowy";
             this.Load += new System.EventHandler(this.MessagesForm_Load);
             this.ResumeLayout(false);
