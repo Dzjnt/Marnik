@@ -29,8 +29,7 @@ namespace MarnikProjekt
         {
             InitializeComponent();
             ApplicationPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            WindowMax = Decimal.Parse(WindowsFormsApp1.Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
-            ChoiceMax = Decimal.Parse(WindowsFormsApp1.Properties.Settings.Default["visibleCommunicationChoiceMax"].ToString());
+
         }
         public void LoadImages()
         {
@@ -150,7 +149,8 @@ namespace MarnikProjekt
 
         private void MessagesForm_Load(object sender, EventArgs e)
         {
-          
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.ShowDialog();
         }
 
 
