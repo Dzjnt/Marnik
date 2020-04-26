@@ -159,5 +159,12 @@ namespace MarnikProjekt
            
 
         }
+
+        private void setting_Click(object sender, EventArgs e)
+        {
+            Console.Out.WriteLine("Settings button");
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.Show();
+        }
     }
 }
