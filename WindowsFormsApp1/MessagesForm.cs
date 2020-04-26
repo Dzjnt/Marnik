@@ -10,21 +10,24 @@ using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp1;
 
 namespace MarnikProjekt
 {
-    public partial class MainAppForm : Form
+    public partial class MessagesForm : Form
     {
         public SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
         public PromptBuilder PromptBuilder = new PromptBuilder();
         public SpeechRecognitionEngine SpeechRecognitionEngine = new SpeechRecognitionEngine();
         public ImageList images = new ImageList();
         private OpenFileDialog OpenFileDialog;
+        public static ListView ListOfMessages = new ListView();
 
-        public MainAppForm()
+        public MessagesForm()
         {
             InitializeComponent();
        
+      
         }
         public void GetImagesFromOpenDialog(string fullPath)
         {
@@ -100,6 +103,21 @@ namespace MarnikProjekt
         {
             picturesListView.Clear();
             images.Images.Clear();
+        }
+
+        private void messagesListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                    break;
+            }
+        }
+
+        private void createMessagesButton_Click(object sender, EventArgs e)
+        {
+           CreateMessageForm createMessageForm = new CreateMessageForm();
+           createMessageForm.ShowDialog();
         }
     }
 }
