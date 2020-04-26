@@ -77,18 +77,23 @@ namespace MarnikProjekt
                 this.picturesListView.Items.Add(images.Images.Keys[j].ToString().Replace(".jpg", "").Replace(".png", ""), j);
             }
         }
-        private void speakButton_Click(object sender, EventArgs e)
+        private void Speak(string textToSpeak = null)
         {
-            // https://superuser.com/questions/590779/how-to-install-more-voices-to-windows-speech
-            // zainstalowałem wszystko pokazuje metoda zwraca, ale się nie chce odpalić zagadka dla Ciebie ;p
-            // var polishVoice = speechSynthesizer.GetInstalledVoices().First(x => x.VoiceInfo.Id == "TTS_MS_pl-PL_Paulina_11.0");
-            //  polishVoice.Enabled = true;
-            // speechSynthesizer.SelectVoice("Microsoft Server Speech Text to Speech Voice (pl-PL, Paulina");
-
             PromptBuilder.ClearContent();
+
+            if(textToSpeak != null)
+            {
+                PromptBuilder.AppendText(textToSpeak);
+                speechSynthesizer.Speak(PromptBuilder);
+                return;
+            }
             if (oneItemWasSelected)
             {
-                PromptBuilder.AppendText(messagesListView.SelectedItems[0].Text);
+                for (int i = 0; i < messagesListView.SelectedItems.Count; i++)
+                {
+
+                    PromptBuilder.AppendText(messagesListView.SelectedItems[i].Text);
+                }
                 speechSynthesizer.Speak(PromptBuilder);
                 return;
 
@@ -101,6 +106,17 @@ namespace MarnikProjekt
                 }
                 speechSynthesizer.Speak(PromptBuilder);
             }
+        }
+        private void speakButton_Click(object sender, EventArgs e)
+        {
+            // https://superuser.com/questions/590779/how-to-install-more-voices-to-windows-speech
+            // zainstalowałem wszystko pokazuje metoda zwraca, ale się nie chce odpalić zagadka dla Ciebie ;p
+            // var polishVoice = speechSynthesizer.GetInstalledVoices().First(x => x.VoiceInfo.Id == "TTS_MS_pl-PL_Paulina_11.0");
+            //  polishVoice.Enabled = true;
+            // speechSynthesizer.SelectVoice("Microsoft Server Speech Text to Speech Voice (pl-PL, Paulina");
+            Speak();
+
+
 
         }
 
@@ -196,5 +212,11 @@ namespace MarnikProjekt
             oneItemWasSelected = true;
         }
 
+        private void messagesListView_ItemMouseHover(object sender, ListViewItemMouseHoverEventArgs e)
+        {
+            int option = Int32.Parse(MarnikProjekt.Properties.Settings.Default["comminication_selection_option"].ToString());
+           if (option == 3)
+            Speak(e.Item.Text);
+        }
     }
 }

@@ -87,6 +87,7 @@
             this.messagesListView.Size = new System.Drawing.Size(379, 691);
             this.messagesListView.TabIndex = 7;
             this.messagesListView.UseCompatibleStateImageBehavior = false;
+            this.messagesListView.ItemMouseHover += new System.Windows.Forms.ListViewItemMouseHoverEventHandler(this.messagesListView_ItemMouseHover);
             this.messagesListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.messagesListView_ItemSelectionChanged);
             this.messagesListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.messagesListView_MouseClick);
             // 
