@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsApp1.Properties {
+namespace MarnikProjekt.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -38,12 +38,12 @@ namespace WindowsFormsApp1.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public decimal ativeTime {
+        public decimal activeTime {
             get {
-                return ((decimal)(this["ativeTime"]));
+                return ((decimal)(this["activeTime"]));
             }
             set {
-                this["ativeTime"] = value;
+                this["activeTime"] = value;
             }
         }
         

@@ -29,7 +29,8 @@ namespace MarnikProjekt
         {
             InitializeComponent();
             ApplicationPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-
+            WindowMax = Decimal.Parse(MarnikProjekt.Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
+            ChoiceMax = Decimal.Parse(MarnikProjekt.Properties.Settings.Default["visibleCommunicationChoiceMax"].ToString());
         }
         public void LoadImages()
         {
@@ -110,6 +111,9 @@ namespace MarnikProjekt
             OpenFileDialog.DefaultExt = "png";
             OpenFileDialog.Multiselect = true;
             OpenFileDialog.Filter = "png files (*.png)|*.jpg|All files (*.*)|*.*";
+
+            WindowMax = Decimal.Parse(Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
+
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
                 if (WindowMax < OpenFileDialog.FileNames.Length)

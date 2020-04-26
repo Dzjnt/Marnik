@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace MarnikProjekt
 {
     public partial class SettingsForm : Form
     {
@@ -38,7 +38,7 @@ namespace WindowsFormsApp1
             Console.WriteLine(selected);
 
             if (selected == 1)
-                Properties.Settings.Default["ativeTime"] = ativeTime.Value;
+                Properties.Settings.Default["activeTime"] = activeTime.Value;
             Properties.Settings.Default["comminication_selection_option"] = selected;
 
             Properties.Settings.Default["visibleCommunicationWindowMax"] = WindowMax.Value;
