@@ -29,8 +29,8 @@ namespace MarnikProjekt
         {
             InitializeComponent();
             ApplicationPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            WindowMax = Decimal.Parse(WindowsFormsApp1.Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
-            ChoiceMax = Decimal.Parse(WindowsFormsApp1.Properties.Settings.Default["visibleCommunicationChoiceMax"].ToString());
+            WindowMax = Decimal.Parse(MarnikProjekt.Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
+            ChoiceMax = Decimal.Parse(MarnikProjekt.Properties.Settings.Default["visibleCommunicationChoiceMax"].ToString());
         }
         public void LoadImages()
         {
@@ -111,9 +111,12 @@ namespace MarnikProjekt
             OpenFileDialog.DefaultExt = "png";
             OpenFileDialog.Multiselect = true;
             OpenFileDialog.Filter = "png files (*.png)|*.jpg|All files (*.*)|*.*";
+
+            Decimal WindowMax = Decimal.Parse(Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
+
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (WindowMax <= OpenFileDialog.FileNames.Length)
+                if (WindowMax < OpenFileDialog.FileNames.Length)
                 {
                     MessageBox.Show($"Zaznaczono zbyt wiele zdjęć! Maksymalna ilość  {WindowMax}");
                     return;
