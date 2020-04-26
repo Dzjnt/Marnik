@@ -15,6 +15,8 @@ namespace WindowsFormsApp1
         public SettingsForm()
         {
             InitializeComponent();
+            WindowMax.Value = Decimal.Parse(Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
+            ChoiceMax.Value = Decimal.Parse(Properties.Settings.Default["visibleCommunicationChoiceMax"].ToString());
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -38,6 +40,11 @@ namespace WindowsFormsApp1
             if (selected == 1)
                 Properties.Settings.Default["ativeTime"] = ativeTime.Value;
             Properties.Settings.Default["comminication_selection_option"] = selected;
+
+            Properties.Settings.Default["visibleCommunicationWindowMax"] = WindowMax.Value;
+            Properties.Settings.Default["visibleCommunicationChoiceMax"] = ChoiceMax.Value;
+
+            Properties.Settings.Default.Save();
         }
     }
 }

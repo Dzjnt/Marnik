@@ -37,11 +37,11 @@
             this.ativeTime = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.WindowMax = new System.Windows.Forms.NumericUpDown();
+            this.ChoiceMax = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.ativeTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WindowMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChoiceMax)).BeginInit();
             this.SuspendLayout();
             // 
             // first
@@ -136,40 +136,40 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(81, 240);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(370, 20);
+            this.label3.Size = new System.Drawing.Size(374, 20);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Liczba komunikatow widoczna w oknie wyswietlania";
+            this.label3.Text = "Liczba komunikatow widoczna w oknie wyswietlania:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(81, 277);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(414, 20);
+            this.label4.Size = new System.Drawing.Size(403, 20);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Liczba komunikatow widoczna w w wybiorze komunikatow";
+            this.label4.Text = "Liczba komunikatow widoczna w wybiorze komunikatow:";
             // 
-            // numericUpDown1
+            // WindowMax
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(501, 238);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(76, 26);
-            this.numericUpDown1.TabIndex = 11;
+            this.WindowMax.Location = new System.Drawing.Point(501, 238);
+            this.WindowMax.Name = "WindowMax";
+            this.WindowMax.Size = new System.Drawing.Size(76, 26);
+            this.WindowMax.TabIndex = 11;
             // 
-            // numericUpDown2
+            // ChoiceMax
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(501, 275);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(76, 26);
-            this.numericUpDown2.TabIndex = 12;
+            this.ChoiceMax.Location = new System.Drawing.Point(501, 275);
+            this.ChoiceMax.Name = "ChoiceMax";
+            this.ChoiceMax.Size = new System.Drawing.Size(76, 26);
+            this.ChoiceMax.TabIndex = 12;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 351);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.ChoiceMax);
+            this.Controls.Add(this.WindowMax);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.ativeTime);
@@ -182,8 +182,8 @@
             this.Name = "SettingsForm";
             this.Text = "Settings";
             ((System.ComponentModel.ISupportInitialize)(this.ativeTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WindowMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChoiceMax)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,7 +199,7 @@
         private System.Windows.Forms.NumericUpDown ativeTime;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown WindowMax;
+        private System.Windows.Forms.NumericUpDown ChoiceMax;
     }
 }

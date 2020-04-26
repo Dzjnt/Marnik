@@ -46,5 +46,29 @@ namespace WindowsFormsApp1.Properties {
                 this["ativeTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal visibleCommunicationWindowMax {
+            get {
+                return ((decimal)(this["visibleCommunicationWindowMax"]));
+            }
+            set {
+                this["visibleCommunicationWindowMax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public decimal visibleCommunicationChoiceMax {
+            get {
+                return ((decimal)(this["visibleCommunicationChoiceMax"]));
+            }
+            set {
+                this["visibleCommunicationChoiceMax"] = value;
+            }
+        }
     }
 }
