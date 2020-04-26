@@ -23,15 +23,20 @@ namespace MarnikProjekt
         private OpenFileDialog OpenFileDialog;
         public bool oneItemWasSelected = false;
         public static string ApplicationPath = string.Empty;
+        public decimal WindowMax;
+        public decimal ChoiceMax;
         public MessagesForm()
         {
             InitializeComponent();
             ApplicationPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            WindowMax = Decimal.Parse(WindowsFormsApp1.Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
+            ChoiceMax = Decimal.Parse(WindowsFormsApp1.Properties.Settings.Default["visibleCommunicationChoiceMax"].ToString());
         }
         public void LoadImages()
         {
 
         }
+
         public void GetImagesFromOpenDialog(string[] fullPath)
         {
             if(picturesListView.Columns.Count == 0)
@@ -108,8 +113,17 @@ namespace MarnikProjekt
             OpenFileDialog.Filter = "png files (*.png)|*.jpg|All files (*.*)|*.*";
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                var path = OpenFileDialog.FileNames;
-                GetImagesFromOpenDialog(path);
+                if (WindowMax <= OpenFileDialog.FileNames.Length)
+                {
+                    MessageBox.Show($"Zaznaczono zbyt wiele zdjęć! Maksymalna ilość  {WindowMax}");
+                    return;
+                }
+                 else
+                {
+                    var path = OpenFileDialog.FileNames;
+                    GetImagesFromOpenDialog(path);
+                }
+             
             }
         }
 
@@ -169,7 +183,6 @@ namespace MarnikProjekt
             }
             oneItemWasSelected = true;
         }
-
 
     }
 }
