@@ -117,8 +117,8 @@
             // activeTime
             // 
             this.activeTime.Location = new System.Drawing.Point(488, 105);
-            this.activeTime.Minimum = new decimal(new int[] {
-            1,
+            this.activeTime.Maximum = new decimal(new int[] {
+            20,
             0,
             0,
             0});

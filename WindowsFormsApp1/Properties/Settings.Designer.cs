@@ -70,5 +70,17 @@ namespace MarnikProjekt.Properties {
                 this["visibleCommunicationChoiceMax"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string pathToDefaultMessageSet {
+            get {
+                return ((string)(this["pathToDefaultMessageSet"]));
+            }
+            set {
+                this["pathToDefaultMessageSet"] = value;
+            }
+        }
     }
 }
