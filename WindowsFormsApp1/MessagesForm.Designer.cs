@@ -108,6 +108,7 @@
             this.deleteMessagesButton.TabIndex = 11;
             this.deleteMessagesButton.Text = "Usuń element";
             this.deleteMessagesButton.UseVisualStyleBackColor = true;
+            this.deleteMessagesButton.Click += new System.EventHandler(this.deleteMessagesButton_Click);
             // 
             // createMessagesButton
             // 

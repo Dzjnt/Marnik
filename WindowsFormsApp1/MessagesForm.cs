@@ -330,5 +330,13 @@ namespace MarnikProjekt
            if (option == 3)
             Speak(e.Item.Text);
         }
+
+        private void deleteMessagesButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem selectedItem in messagesListView.SelectedItems)
+            {
+                messagesListView.Items.Remove(selectedItem);
+            }
+        }
     }
 }
