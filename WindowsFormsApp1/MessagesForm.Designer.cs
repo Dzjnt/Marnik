@@ -99,6 +99,7 @@
             this.browseMessagesButton.TabIndex = 10;
             this.browseMessagesButton.Text = "Przeglądaj zestaw ";
             this.browseMessagesButton.UseVisualStyleBackColor = true;
+            this.browseMessagesButton.Click += new System.EventHandler(this.browseMessagesButton_Click);
             // 
             // deleteMessagesButton
             // 

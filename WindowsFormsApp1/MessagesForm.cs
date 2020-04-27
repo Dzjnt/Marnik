@@ -340,5 +340,15 @@ namespace MarnikProjekt
                 messagesListView.Items.Remove(selectedItem);
             }
         }
+
+        private void browseMessagesButton_Click(object sender, EventArgs e)
+        {
+            pathToDefaultMessageSet = MarnikProjekt.Properties.Settings.Default["pathToDefaultMessageSet"].ToString();
+            OpenFileDialog = new OpenFileDialog();
+            OpenFileDialog.InitialDirectory = pathToDefaultMessageSet;
+            OpenFileDialog.DefaultExt = "png";
+            OpenFileDialog.Filter = "png files (*.png)|*.jpg|All files (*.*)|*.*";
+            OpenFileDialog.ShowDialog();
+        }
     }
 }

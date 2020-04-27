@@ -38,9 +38,9 @@
             this.messageNameLabel.AutoSize = true;
             this.messageNameLabel.Location = new System.Drawing.Point(5, 15);
             this.messageNameLabel.Name = "messageNameLabel";
-            this.messageNameLabel.Size = new System.Drawing.Size(139, 13);
+            this.messageNameLabel.Size = new System.Drawing.Size(123, 13);
             this.messageNameLabel.TabIndex = 0;
-            this.messageNameLabel.Text = "Nazwa nowego komunikatu";
+            this.messageNameLabel.Text = "Nazwa nowego zestawu";
             // 
             // saveButton
             // 
@@ -72,7 +72,7 @@
             this.MinimizeBox = false;
             this.Name = "CreateMessageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Utwórz komunikat";
+            this.Text = "Utwórz zestaw";
             this.ResumeLayout(false);
             this.PerformLayout();
 
