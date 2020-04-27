@@ -12,11 +12,14 @@ namespace MarnikProjekt
 {
     public partial class SettingsForm : Form
     {
+        private int _timeProperty;
         public SettingsForm()
         {
+            _timeProperty = Int32.Parse(MarnikProjekt.Properties.Settings.Default["activeTime"].ToString());
             InitializeComponent();
             WindowMax.Value = Decimal.Parse(Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
             ChoiceMax.Value = Decimal.Parse(Properties.Settings.Default["visibleCommunicationChoiceMax"].ToString());
+            activeTime.Value = _timeProperty != 0 ? _timeProperty : 1;
         }
 
         private void label1_Click(object sender, EventArgs e)
