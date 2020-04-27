@@ -43,7 +43,7 @@ namespace MarnikProjekt
         {
             if(picturesListView.Columns.Count == 0)
             {
-                picturesListView.Columns.Add("Obrazki do przeczytania", 150);
+                picturesListView.Columns.Add("Zestaw komunikatów",350);
                 picturesListView.Alignment = ListViewAlignment.Left;
                 picturesListView.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.None);
                 picturesListView.View = View.Details;
