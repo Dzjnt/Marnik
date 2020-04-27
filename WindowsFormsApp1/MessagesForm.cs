@@ -174,8 +174,9 @@ namespace MarnikProjekt
 
         private void loadImagesFromDialog()
         {
+            string pathToDefaultMessageSet = MarnikProjekt.Properties.Settings.Default["pathToDefaultMessageSet"].ToString();
             OpenFileDialog = new OpenFileDialog();
-            OpenFileDialog.InitialDirectory = @"C:\";
+            OpenFileDialog.InitialDirectory = pathToDefaultMessageSet != string.Empty ? pathToDefaultMessageSet : @"C:\";
             OpenFileDialog.DefaultExt = "png";
             OpenFileDialog.Multiselect = true;
             OpenFileDialog.Filter = "png files (*.png)|*.jpg|All files (*.*)|*.*";
