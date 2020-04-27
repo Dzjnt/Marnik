@@ -39,7 +39,7 @@ namespace MarnikProjekt
 
         }
 
-        public void GetImagesFromOpenDialog(string[] fullPath)
+        public void GetImagesFromOpenDialog(string[] fullPath, bool loadSession)
         {
             if(picturesListView.Columns.Count == 0)
             {
@@ -50,23 +50,37 @@ namespace MarnikProjekt
             }
           
             images.ImageSize = new Size(100, 100);
+            images.ColorDepth = ColorDepth.Depth32Bit;
 
             try
             {
                 foreach (string file in fullPath)
                 {
-                    var name = Path.GetFileName(file);
-                    images.Images.Add(name, Image.FromFile(file));
+                    using (var image = Image.FromFile(file))
+                    {
+                        var name = Path.GetFileName(file);
+                        images.Images.Add(name, image.GetThumbnailImage(200,200,null,new IntPtr()));
+                    }
                 }
+                picturesListView.SmallImageList = images;
+//                picturesListView.SmallImageList = images;
+
+                AddImagesToListView(images);
+
+
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
 
-            picturesListView.SmallImageList = images;
-            AddImagesToListView(images);
-            saveSession(fullPath);
+            //picturesListView.SmallImageList = images;
+            //AddImagesToListView(images);
+
+            if(!loadSession) 
+                saveSession(fullPath);
+            if (images.Images.Count == WindowMax)
+                loadButton.Enabled = false;
 
         }
 
@@ -75,25 +89,38 @@ namespace MarnikProjekt
             
             string currentDir = Path.Combine(Directory.GetCurrentDirectory(), "session");
 
-            Directory.Delete(currentDir, true);
-            Directory.CreateDirectory(currentDir);
+            //if(Directory.Exists(currentDir))
+            //    Directory.Delete(currentDir, true);
+
+            if(!Directory.Exists(currentDir))
+                Directory.CreateDirectory(currentDir);
             //string[] files = Directory.GetFiles(fullPath);
             foreach(string file in fullPath)
             {
-                File.Copy(file, Path.Combine(currentDir, Path.GetFileName(file)));
+                Console.WriteLine(file);
+                try
+                {
+                    File.Copy(file, Path.Combine(currentDir, Path.GetFileName(file)));
+                }catch(IOException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
+            MarnikProjekt.Properties.Settings.Default["pathToDefaultMessageSet"] = currentDir;
+            MarnikProjekt.Properties.Settings.Default.Save();
         }
 
         public void AddImagesToListView(ImageList images)
         {
             //Usunięcie rozszrzeń, żeby nie gadał np. królik.jpg tylko królik
             //images.Images.Keys[j].ToString().Replace(".jpg", "").Replace(".png", "")
-
+            this.picturesListView.Items.Clear();
             for (int j = 0; j < images.Images.Count; j++)
             {
-
+                Console.WriteLine($"Add {j}");
                 this.picturesListView.Items.Add(images.Images.Keys[j].ToString().Replace(".jpg", "").Replace(".png", ""), j);
             }
+
         }
         private void speakButton_Click(object sender, EventArgs e)
         {
@@ -139,7 +166,8 @@ namespace MarnikProjekt
 
             if (OpenFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (WindowMax < OpenFileDialog.FileNames.Length)
+                Console.WriteLine($"Current image in list: {images.Images.Count}");
+                if (OpenFileDialog.FileNames.Length > WindowMax)
                 {
                     MessageBox.Show($"Zaznaczono zbyt wiele zdjęć! Maksymalna ilość  {WindowMax}");
                     return;
@@ -147,16 +175,39 @@ namespace MarnikProjekt
                 else
                 {
                     var path = OpenFileDialog.FileNames;
-                    GetImagesFromOpenDialog(path);
+                    GetImagesFromOpenDialog(path, false);
                 }
 
             }
+            if (images.Images.Count == WindowMax)
+                loadButton.Enabled = false;
         }
 
         private void clearListView_Click(object sender, EventArgs e)
         {
+            string currentDir = Path.Combine(Directory.GetCurrentDirectory(), "session");
+            loadButton.Enabled = true;
+
+            foreach (Image img in picturesListView.SmallImageList.Images)
+            {
+                img.Dispose();
+            }
+
+           
+            this.picturesListView.Items.Clear();
+
             picturesListView.Clear();
+            foreach(Image img in images.Images)
+            {
+                img.Dispose();
+            }
             images.Images.Clear();
+            images = new ImageList();
+
+            for(int i =0; i< picturesListView.Items.Count;i++)
+                picturesListView.Items.RemoveAt(i);
+            if (Directory.Exists(currentDir))
+                Directory.Delete(currentDir, true);
         }
 
         private void messagesListView_MouseClick(object sender, MouseEventArgs e)
@@ -177,22 +228,32 @@ namespace MarnikProjekt
         private void MessagesForm_Load(object sender, EventArgs e)
         {
             pathToDefaultMessageSet = MarnikProjekt.Properties.Settings.Default["pathToDefaultMessageSet"].ToString();
-
+            Console.WriteLine(pathToDefaultMessageSet);
             SettingsForm settingsForm = new SettingsForm();
             settingsForm.ShowDialog();
 
-            if (!string.IsNullOrEmpty(pathToDefaultMessageSet))
+            if (!string.IsNullOrEmpty(pathToDefaultMessageSet) && Directory.Exists(pathToDefaultMessageSet))
             {
                 FileAttributes fileAttributes = File.GetAttributes(pathToDefaultMessageSet);
                 if (fileAttributes.HasFlag(FileAttributes.Directory))
                 {
                     if (MessageBox.Show("Czy wczytać ostatni zestaw?", "Zestaw", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
+                        Console.WriteLine("Load session");
                         string[] files = Directory.GetFiles(pathToDefaultMessageSet);
-                        GetImagesFromOpenDialog(files);
+                        GetImagesFromOpenDialog(files, true);
                     }
                     else
+                    {
+                        MessageBox.Show("Załadauj zestaw", "Załadauj zestaw z dysku", MessageBoxButtons.OK);
+
+                        string currentDir = Path.Combine(Directory.GetCurrentDirectory(), "session");
+
+                        if(Directory.Exists(currentDir))
+                            Directory.Delete(currentDir, true);
                         loadImagesFromDialog();
+
+                    }
                 }
 
             }
@@ -202,6 +263,8 @@ namespace MarnikProjekt
                 loadImagesFromDialog();
 
             }
+            if (images.Images.Count == WindowMax)
+                loadButton.Enabled = false;
         }
 
 
