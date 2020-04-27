@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using WindowsFormsApp1;
 
 namespace MarnikProjekt
@@ -191,6 +193,15 @@ namespace MarnikProjekt
                     MessageBox.Show($"Zaznaczono zbyt wiele zdjęć! Maksymalna ilość  {WindowMax}");
                     return;
                 }
+                else if (alreadyExists(OpenFileDialog.FileNames))
+                {
+                    if (MessageBox.Show("W zestawie znajdują się pliki, które mają taką samą nazwę jak już wczytane.\n\n Tak - aby, pominąc duplikaty\n Nie - Wybierz pliki ponownie?", "Zestaw", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        GetImagesFromOpenDialog(getFilesThatNameNotInCurrentList(OpenFileDialog.FileNames), false);
+                    }
+                    else
+                        loadImagesFromDialog();
+                }
                 else
                 {
                     var path = OpenFileDialog.FileNames;
@@ -200,6 +211,35 @@ namespace MarnikProjekt
             }
             if (images.Images.Count == WindowMax)
                 loadButton.Enabled = false;
+        }
+
+        private bool alreadyExists(string[] newFiles)
+        {
+            foreach(ListViewItem item in this.picturesListView.Items)
+            {
+                foreach(string newFile in newFiles)
+                {
+                    if (item.Text.Equals(Path.GetFileNameWithoutExtension(newFile)))
+                        return true;
+
+                }
+            }
+            return false;
+        }
+
+        private string[] getFilesThatNameNotInCurrentList(string[] files)
+        {
+            List<string> withoutDuplicates = new List<string>();
+            foreach (ListViewItem item in this.picturesListView.Items)
+            {
+                foreach (string file in files)
+                {
+                    if (!item.Text.Equals(Path.GetFileNameWithoutExtension(file)))
+                        withoutDuplicates.Add(file);
+
+                }
+            }
+            return withoutDuplicates.ToArray();
         }
 
         private void clearListView_Click(object sender, EventArgs e)
