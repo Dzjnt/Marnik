@@ -21,5 +21,5 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
 
     - name: MSBuild
-      working-directory: src
+      working-directory: WindowsFormsApp1
       run: msbuild MarnikProjekt.csproj
