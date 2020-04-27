@@ -300,8 +300,10 @@ namespace MarnikProjekt
                 foreach (ListViewItem item in picturesListView.SelectedItems)
                 {
 
-                    picturesListView.Items.Remove(item);
-                    messagesListView.Items.Add(item);
+                    ListViewItem listViewItem = new ListViewItem();
+                    listViewItem.Text = item.Text;
+                    messagesListView.Items.Add(listViewItem);
+                  
                 }
             }
                         
