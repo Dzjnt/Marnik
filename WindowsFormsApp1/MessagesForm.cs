@@ -148,12 +148,28 @@ namespace MarnikProjekt
             }
             else
             {
-                for (int i = 0; i < messagesListView.Items.Count; i++)
+                int option = Int32.Parse(MarnikProjekt.Properties.Settings.Default["comminication_selection_option"].ToString());
+                if (option == 1)
                 {
-                    PromptBuilder.AppendText(messagesListView.Items[i].Text);
+                    int sleep = Int32.Parse(MarnikProjekt.Properties.Settings.Default["activeTime"].ToString());
+                    Console.WriteLine($"sleep: {sleep}");
+                    for (int i = 0; i < messagesListView.Items.Count; i++)
+                    {
+                        speechSynthesizer.Speak(messagesListView.Items[i].Text);
+                        System.Threading.Thread.Sleep(sleep);
+
+                    }
                 }
-                speechSynthesizer.Rate = Int32.Parse(MarnikProjekt.Properties.Settings.Default["activeTime"].ToString()) - 10;
-                speechSynthesizer.Speak(PromptBuilder);
+                else
+                {
+                    for (int i = 0; i < messagesListView.Items.Count; i++)
+                    {
+                        PromptBuilder.AppendText(messagesListView.Items[i].Text);
+                    }
+                    //speechSynthesizer.Rate = Int32.Parse(MarnikProjekt.Properties.Settings.Default["activeTime"].ToString()) - 10;
+                    speechSynthesizer.Speak(PromptBuilder);
+                }
+
             }
         }
         private void speakButton_Click(object sender, EventArgs e)
@@ -271,10 +287,18 @@ namespace MarnikProjekt
 
         private void messagesListView_MouseClick(object sender, MouseEventArgs e)
         {
-            switch (e.Button)
+            Console.WriteLine("Mouse Click");
+            var selectedItem = messagesListView.SelectedItems[0].Text;
+
+            int option = Int32.Parse(MarnikProjekt.Properties.Settings.Default["comminication_selection_option"].ToString());
+
+            if (option == 2)
             {
-                case MouseButtons.Right:
-                    break;
+             if (e.Button == MouseButtons.Left)
+                {
+                    this.messagesListView.SelectedItems.Clear();
+                    Speak(selectedItem);
+                }
             }
         }
 
@@ -390,6 +414,14 @@ namespace MarnikProjekt
             OpenFileDialog.DefaultExt = "png";
             OpenFileDialog.Filter = "png files (*.png)|*.jpg|All files (*.*)|*.*";
             OpenFileDialog.ShowDialog();
+        }
+
+        private void messagesListView_ItemActivate(object sender, ListViewItemMouseHoverEventArgs e)
+        {
+            Console.WriteLine("Item Active");
+            Console.WriteLine(e.Item.Text);
+
+            Speak(e.Item.Text);
         }
     }
 }
