@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using WindowsFormsApp1;
 
 namespace MarnikProjekt
@@ -146,12 +148,28 @@ namespace MarnikProjekt
             }
             else
             {
-                for (int i = 0; i < messagesListView.Items.Count; i++)
+                int option = Int32.Parse(MarnikProjekt.Properties.Settings.Default["comminication_selection_option"].ToString());
+                if (option == 1)
                 {
-                    PromptBuilder.AppendText(messagesListView.Items[i].Text);
+                    int sleep = Int32.Parse(MarnikProjekt.Properties.Settings.Default["activeTime"].ToString());
+                    Console.WriteLine($"sleep: {sleep}");
+                    for (int i = 0; i < messagesListView.Items.Count; i++)
+                    {
+                        speechSynthesizer.Speak(messagesListView.Items[i].Text);
+                        System.Threading.Thread.Sleep(sleep);
+
+                    }
                 }
-                speechSynthesizer.Rate = Int32.Parse(MarnikProjekt.Properties.Settings.Default["activeTime"].ToString()) - 10;
-                speechSynthesizer.Speak(PromptBuilder);
+                else
+                {
+                    for (int i = 0; i < messagesListView.Items.Count; i++)
+                    {
+                        PromptBuilder.AppendText(messagesListView.Items[i].Text);
+                    }
+                    //speechSynthesizer.Rate = Int32.Parse(MarnikProjekt.Properties.Settings.Default["activeTime"].ToString()) - 10;
+                    speechSynthesizer.Speak(PromptBuilder);
+                }
+
             }
         }
         private void speakButton_Click(object sender, EventArgs e)
@@ -191,6 +209,15 @@ namespace MarnikProjekt
                     MessageBox.Show($"Zaznaczono zbyt wiele zdjęć! Maksymalna ilość  {WindowMax}");
                     return;
                 }
+                else if (alreadyExists(OpenFileDialog.FileNames))
+                {
+                    if (MessageBox.Show("W zestawie znajdują się pliki, które mają taką samą nazwę jak już wczytane.\n\n Tak - aby, pominąc duplikaty\n Nie - Wybierz pliki ponownie?", "Zestaw", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        GetImagesFromOpenDialog(getFilesThatNameNotInCurrentList(OpenFileDialog.FileNames), false);
+                    }
+                    else
+                        loadImagesFromDialog();
+                }
                 else
                 {
                     var path = OpenFileDialog.FileNames;
@@ -200,6 +227,35 @@ namespace MarnikProjekt
             }
             if (images.Images.Count == WindowMax)
                 loadButton.Enabled = false;
+        }
+
+        private bool alreadyExists(string[] newFiles)
+        {
+            foreach(ListViewItem item in this.picturesListView.Items)
+            {
+                foreach(string newFile in newFiles)
+                {
+                    if (item.Text.Equals(Path.GetFileNameWithoutExtension(newFile)))
+                        return true;
+
+                }
+            }
+            return false;
+        }
+
+        private string[] getFilesThatNameNotInCurrentList(string[] files)
+        {
+            List<string> withoutDuplicates = new List<string>();
+            foreach (ListViewItem item in this.picturesListView.Items)
+            {
+                foreach (string file in files)
+                {
+                    if (!item.Text.Equals(Path.GetFileNameWithoutExtension(file)))
+                        withoutDuplicates.Add(file);
+
+                }
+            }
+            return withoutDuplicates.ToArray();
         }
 
         private void clearListView_Click(object sender, EventArgs e)
@@ -231,10 +287,18 @@ namespace MarnikProjekt
 
         private void messagesListView_MouseClick(object sender, MouseEventArgs e)
         {
-            switch (e.Button)
+            Console.WriteLine("Mouse Click");
+            var selectedItem = messagesListView.SelectedItems[0].Text;
+
+            int option = Int32.Parse(MarnikProjekt.Properties.Settings.Default["comminication_selection_option"].ToString());
+
+            if (option == 2)
             {
-                case MouseButtons.Right:
-                    break;
+             if (e.Button == MouseButtons.Left)
+                {
+                    this.messagesListView.SelectedItems.Clear();
+                    Speak(selectedItem);
+                }
             }
         }
 
@@ -351,6 +415,14 @@ namespace MarnikProjekt
             OpenFileDialog.DefaultExt = "png";
             OpenFileDialog.Filter = "png files (*.png)|*.jpg|All files (*.*)|*.*";
             OpenFileDialog.ShowDialog();
+        }
+
+        private void messagesListView_ItemActivate(object sender, ListViewItemMouseHoverEventArgs e)
+        {
+            Console.WriteLine("Item Active");
+            Console.WriteLine(e.Item.Text);
+
+            Speak(e.Item.Text);
         }
     }
 }
