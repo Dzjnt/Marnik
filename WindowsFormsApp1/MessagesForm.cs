@@ -24,14 +24,14 @@ namespace MarnikProjekt
         public bool oneItemWasSelected = false;
         public static string ApplicationPath = string.Empty;
         public decimal WindowMax;
-        public decimal ChoiceMax;
+     
         public string pathToDefaultMessageSet;
         public MessagesForm()
         {
             InitializeComponent();
             ApplicationPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             WindowMax = Decimal.Parse(MarnikProjekt.Properties.Settings.Default["visibleCommunicationWindowMax"].ToString());
-            ChoiceMax = Decimal.Parse(MarnikProjekt.Properties.Settings.Default["visibleCommunicationChoiceMax"].ToString());
+     
             pathToDefaultMessageSet = MarnikProjekt.Properties.Settings.Default["pathToDefaultMessageSet"].ToString();
         }
         public void LoadImages()
@@ -264,7 +264,7 @@ namespace MarnikProjekt
                     }
                     else
                     {
-                        MessageBox.Show("Załadauj zestaw", "Załadauj zestaw z dysku", MessageBoxButtons.OK);
+                        MessageBox.Show("Załaduj zestaw", "Załaduj zestaw z dysku", MessageBoxButtons.OK);
 
                         string currentDir = Path.Combine(Directory.GetCurrentDirectory(), "session");
 
@@ -278,7 +278,7 @@ namespace MarnikProjekt
             }
             else
             {
-                MessageBox.Show("Załadauj zestaw", "Załadauj zestaw z dysku", MessageBoxButtons.OK);
+                MessageBox.Show("Załaduj zestaw", "Załaduj zestaw z dysku", MessageBoxButtons.OK);
                 loadImagesFromDialog();
 
             }
@@ -291,9 +291,10 @@ namespace MarnikProjekt
         private void picturesListView_DoubleClick(object sender, EventArgs e)
         {
             var selectedItem = picturesListView.SelectedItems[0];
-            if(ChoiceMax < messagesListView.Items.Count)
+           decimal ChoiceMax = Decimal.Parse(MarnikProjekt.Properties.Settings.Default["visibleCommunicationChoiceMax"].ToString());
+            if (ChoiceMax < messagesListView.Items.Count)
             {
-                MessageBox.Show($"Nie można dodać więcej zdjęć! Maksymalna ilość  {WindowMax}");
+                MessageBox.Show($"Nie można dodać więcej zdjęć! Maksymalna ilość  {ChoiceMax}");
                 return;
             }
             else
